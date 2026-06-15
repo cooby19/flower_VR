@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="zh-Hant">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <meta name="theme-color" content="#0a0f0c" />
+    <title>校園金針花 360 度互動場景</title>
+  </head>
+  <body>
+    <main id="app" aria-label="校園金針花 360 度互動場景">
+      <canvas id="scene" aria-label="雨後校園金針花 360 度全景"></canvas>
+
+      <div id="loading" class="loading" role="status">載入校園全景中</div>
+      <div class="crosshair" aria-hidden="true"></div>
+
+      <button id="gyroButton" class="gyro-button" type="button">啟用陀螺儀</button>
+
+      <div class="hud" role="status" aria-live="polite">
+        <span id="hudText">拖曳或轉動手機觀看四周</span>
+        <span id="statusText" class="status-text"></span>
+      </div>
+    </main>
+
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>
