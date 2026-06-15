@@ -14,6 +14,26 @@
       <div class="crosshair" aria-hidden="true"></div>
 
       <button id="gyroButton" class="gyro-button" type="button">啟用陀螺儀</button>
+      <button id="interactionPrompt" class="interaction-prompt is-hidden" type="button" aria-label="檢視金針花" hidden>
+        <span id="promptKey" class="prompt-key" aria-hidden="true">F</span>
+        <span id="promptAction">檢視</span>
+      </button>
+
+      <section
+        id="dialogueOverlay"
+        class="dialogue-overlay is-hidden"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="dialogueSpeaker"
+        hidden
+        tabindex="-1"
+      >
+        <div class="dialogue-panel">
+          <div id="dialogueSpeaker" class="dialogue-speaker">解說員</div>
+          <p id="dialogueText" class="dialogue-text"></p>
+          <button id="dialogueAdvance" class="dialogue-advance" type="button">下一句</button>
+        </div>
+      </section>
 
       <div class="hud" role="status" aria-live="polite">
         <span id="hudText">拖曳或轉動手機觀看四周</span>
