@@ -144,6 +144,35 @@ body {
   opacity: 0.72;
 }
 
+.back-button {
+  position: fixed;
+  top: calc(14px + env(safe-area-inset-top, 0px));
+  left: calc(14px + env(safe-area-inset-left, 0px));
+  display: inline-flex;
+  align-items: center;
+  min-height: 42px;
+  padding: 0 16px;
+  border: 1px solid rgba(255, 255, 255, 0.34);
+  border-radius: 999px;
+  color: #fbfdf8;
+  background: rgba(10, 20, 14, 0.54);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  font: inherit;
+  font-size: 14px;
+  line-height: 1;
+  letter-spacing: 0;
+  text-decoration: none;
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.42);
+  cursor: pointer;
+  z-index: 3;
+}
+
+.back-button:focus-visible {
+  outline: 2px solid rgba(244, 212, 84, 0.92);
+  outline-offset: 3px;
+}
+
 .interaction-prompt {
   position: fixed;
   left: 50%;
@@ -364,6 +393,14 @@ body {
     right: calc(12px + env(safe-area-inset-right, 0px));
     min-height: 40px;
     max-width: calc(100vw - 24px - env(safe-area-inset-left, 0px) - env(safe-area-inset-right, 0px));
+    padding: 0 14px;
+    font-size: 13px;
+  }
+
+  .back-button {
+    top: calc(12px + env(safe-area-inset-top, 0px));
+    left: calc(12px + env(safe-area-inset-left, 0px));
+    min-height: 40px;
     padding: 0 14px;
     font-size: 13px;
   }
