@@ -408,15 +408,28 @@ function handleWheel(event) {
 
 function handleKeyDown(event) {
   const key = event.key.toLowerCase();
+  const code = event.code;
+
+  // 同時比對 event.code（實體按鍵位置），這樣即使啟用注音、倉頡等中文輸入法
+  // （此時 event.key 會變成 "Process"）或不同鍵盤配置，F 鍵快捷仍可觸發。
+  const isViewKey = key === "f" || code === "KeyF";
+  const isAdvanceKey =
+    isViewKey ||
+    key === "enter" ||
+    code === "Enter" ||
+    code === "NumpadEnter" ||
+    key === " " ||
+    code === "Space";
+  const isCloseKey = key === "escape" || code === "Escape";
 
   if (dialogueState.open) {
-    if (key === "escape") {
+    if (isCloseKey) {
       event.preventDefault();
       closeDialogue();
       return;
     }
 
-    if (!event.repeat && (key === "f" || key === "enter" || key === " ")) {
+    if (!event.repeat && isAdvanceKey) {
       event.preventDefault();
       advanceDialogue();
     }
@@ -424,7 +437,7 @@ function handleKeyDown(event) {
     return;
   }
 
-  if (!event.repeat && key === "f" && activeHotspot) {
+  if (!event.repeat && isViewKey && activeHotspot) {
     event.preventDefault();
     openDialogue();
   }
