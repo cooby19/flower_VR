@@ -2,6 +2,7 @@ import * as THREE from "three";
 import "./styles.css";
 
 const canvas = document.querySelector("#scene");
+const backToMap = document.querySelector("#backToMap");
 const gyroButton = document.querySelector("#gyroButton");
 const interactionPrompt = document.querySelector("#interactionPrompt");
 const promptKey = document.querySelector("#promptKey");
@@ -469,6 +470,14 @@ setupHotspots();
 updatePromptInputLabel();
 
 gyroButton.addEventListener("click", enableGyro);
+if (backToMap) {
+  backToMap.addEventListener("click", (event) => {
+    if (window.history.length > 1) {
+      event.preventDefault();
+      window.history.back();
+    }
+  });
+}
 interactionPrompt.addEventListener("click", openDialogue);
 dialogueOverlay.addEventListener("click", advanceDialogue);
 canvas.addEventListener("pointerdown", handlePointerDown);
