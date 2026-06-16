@@ -52,6 +52,13 @@ const flowerHotspots = [
     lat: -12,
     radius: 17,
     direction: new THREE.Vector3()
+  },
+  {
+    id: "rock-daylily",
+    lon: 138,
+    lat: -10,
+    radius: 20,
+    direction: new THREE.Vector3()
   }
 ];
 
