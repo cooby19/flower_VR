@@ -76,6 +76,9 @@ let gyroPending = false;
 let gyroTimeout = 0;
 let activeHotspot = null;
 let promptVisible = false;
+let hudFadeTimeout = 0;
+
+const HUD_FADE_DELAY = 4200;
 
 const dialogueState = {
   open: false,
@@ -116,6 +119,30 @@ textureLoader.load(
 
 function setStatus(message) {
   statusText.textContent = message;
+
+  if (message) {
+    revealHud();
+  } else {
+    scheduleHudFade();
+  }
+}
+
+function revealHud() {
+  window.clearTimeout(hudFadeTimeout);
+  hud.classList.remove("is-faded");
+}
+
+function scheduleHudFade() {
+  window.clearTimeout(hudFadeTimeout);
+  hud.classList.remove("is-faded");
+  hudFadeTimeout = window.setTimeout(() => {
+    hud.classList.add("is-faded");
+  }, HUD_FADE_DELAY);
+}
+
+function setHudHint(message) {
+  hudText.textContent = message;
+  scheduleHudFade();
 }
 
 function clamp(value, min, max) {
@@ -307,7 +334,7 @@ function handleDeviceOrientation(event) {
     window.clearTimeout(gyroTimeout);
     gyroButton.textContent = "陀螺儀已啟用";
     gyroButton.disabled = true;
-    hudText.textContent = "轉動手機觀看四周";
+    setHudHint("轉動手機觀看四周");
     setStatus("");
   }
 }
@@ -320,7 +347,7 @@ function stopGyro(message = "") {
   deviceOrientation = null;
   gyroButton.textContent = "啟用陀螺儀";
   gyroButton.disabled = false;
-  hudText.textContent = "拖曳或轉動手機觀看四周";
+  setHudHint("拖曳或轉動手機觀看四周");
   setStatus(message);
 }
 
